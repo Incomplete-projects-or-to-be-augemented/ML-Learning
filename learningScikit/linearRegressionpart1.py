@@ -1,14 +1,15 @@
 X_train = []
 n = 10
 for i in range(n):
-    X_train.append([(i+1)*100])
+    X_train.append([(i+1)*10])
     
 y_train = []
 
 for i in range(n):
-    y_train.append([X_train[i][0]//2])
+    y_train.append([40+(X_train[i][0]*10)])
     
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 model = LinearRegression()
 
@@ -19,3 +20,4 @@ p1 = model.predict([[150],[250],[1000]])
 
 for i in p1:
     print(i[0])
+    
