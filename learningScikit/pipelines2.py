@@ -5,6 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.impute import SimpleImputer
+from sklearn.model_selection import cross_val_score
 
 
 df = pd.DataFrame({
@@ -30,7 +31,7 @@ numeric_pipeline = Pipeline([
 ])
 
 categorical_pipeline = Pipeline([
-    ("encoder", OneHotEncoder())
+    ("encoder", OneHotEncoder(handle_unknown="ignore"))
 ])
 
 preprocessor = ColumnTransformer([
@@ -47,3 +48,9 @@ pipe = Pipeline([
 pipe.fit(x, y)
 
 print(pipe.predict(x))
+
+scores = cross_val_score(pipe, x, y, cv=2)
+
+
+print(scores)
+print(scores.mean())
