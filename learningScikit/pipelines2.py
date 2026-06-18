@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -39,6 +40,7 @@ preprocessor = ColumnTransformer([
 
 pipe = Pipeline([
     ("preprocessing", preprocessor),
+    ("pca", PCA(n_components=2)),
     ("model", LogisticRegression())
 ])
 
