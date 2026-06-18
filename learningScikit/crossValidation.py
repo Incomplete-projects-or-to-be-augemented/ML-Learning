@@ -1,4 +1,15 @@
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.decomposition import PCA
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+
+
+
 
 data = pd.DataFrame({
     "age": [22, 25, 47, 52, 46, 56, 23, 30, 36, 40,
@@ -17,7 +28,39 @@ data = pd.DataFrame({
                0, 0, 1, 1, 0, 1, 1, 0, 1, 0]
 })
 
+
+
 x = data.drop("bought", axis=1)
 y = data["bought"]
 
 print(y.value_counts())
+
+
+numeric_features = ["age", "salary"]
+
+categorical_features = ["country","job_type"]
+
+numeric_pipeline = Pipeline([
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+
+categorical_pipeline = Pipeline([
+    ("encoder", OneHotEncoder(handle_unknown="ignore"))
+])
+
+preprocessor = ColumnTransformer([
+    ("num", numeric_pipeline, numeric_features),
+    ("cat", categorical_pipeline, categorical_features)
+])
+
+pipe = Pipeline([
+    ("preprocessing", preprocessor),
+    ("pca", PCA(n_components=2)),
+    ("model", LogisticRegression())
+])
+
+scores = cross_val_score(pipe, x, y, cv=5)
+
+print(scores)
+print(scores.mean())
