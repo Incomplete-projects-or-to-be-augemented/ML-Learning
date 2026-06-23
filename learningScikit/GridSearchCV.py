@@ -1,3 +1,4 @@
+import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer
@@ -70,3 +71,8 @@ grid = GridSearchCV(
     param_grid=params,
     cv=5
 )
+
+grid.fit(x, y)
+
+print(grid.best_params_)
+print(grid.best_score_)
