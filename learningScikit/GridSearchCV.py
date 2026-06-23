@@ -6,6 +6,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    classification_report
+)
 
 data = pd.DataFrame({
     "age": [22, 25, 47, 52, 46, 56, 23, 30, 36, 40,
@@ -28,8 +33,6 @@ data = pd.DataFrame({
 
 x = data.drop("bought", axis=1)
 y = data["bought"]
-
-print(y.value_counts())
 
 
 numeric_features = ["age", "salary"]
@@ -73,6 +76,10 @@ grid = GridSearchCV(
 )
 
 grid.fit(x, y)
+pred = grid.predict(x)
 
 print(grid.best_params_)
 print(grid.best_score_)
+print(accuracy_score(y, pred))
+print(confusion_matrix(y, pred))
+print(classification_report(y, pred))
