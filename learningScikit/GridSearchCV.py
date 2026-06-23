@@ -1,15 +1,10 @@
-import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-
-
-
 
 data = pd.DataFrame({
     "age": [22, 25, 47, 52, 46, 56, 23, 30, 36, 40,
@@ -61,7 +56,17 @@ pipe = Pipeline([
 ])
 
 
-scores = cross_val_score(pipe, x, y, cv=5)
 
-print(scores)
-print(scores.mean())
+
+
+params = {
+    "pca__n_components": [1,2],
+    "model__C": [0.1,1,10]
+}
+
+
+grid = GridSearchCV(
+    pipe,
+    param_grid=params,
+    cv=5
+)
