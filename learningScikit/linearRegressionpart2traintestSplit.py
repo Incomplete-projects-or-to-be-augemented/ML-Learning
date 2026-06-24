@@ -1,4 +1,5 @@
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 import random
 
@@ -25,4 +26,12 @@ for i in pred:
     print(i[0])
     
 score = model.score(X_test,y_test)
+pred = model.predict(X_test)
+
+mse = mean_squared_error(y_test, pred)
+mae = mean_absolute_error(y_test, pred)
+r2Score = r2_score(y_test, pred)
 print(score)
+print(mse)
+print(mae)
+print(r2Score)
