@@ -16,6 +16,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 
 
 data = pd.DataFrame({
