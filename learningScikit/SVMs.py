@@ -1,5 +1,5 @@
-from prepData import *
-
+from prepData import preprocessor,Pipeline,SVC,GridSearchCV
+from prepData import x,y,accuracy_score,classification_report,confusion_matrix
 
 pipe = Pipeline([
     ("preprocessing", preprocessor),

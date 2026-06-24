@@ -3,20 +3,25 @@ import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.linear_model import LinearRegression
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
+
+import random
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import silhouette_score
+from sklearn.feature_selection import SelectKBest, mutual_info_classif,train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 data = pd.DataFrame({

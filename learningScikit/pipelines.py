@@ -1,9 +1,5 @@
-import random
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-
+from prepData import Pipeline,StandardScaler,LogisticRegression
+from prepData import random,train_test_split
 
 x = []
 n = 10

@@ -1,4 +1,6 @@
-from prepData import *
+from prepData import preprocessor,Pipeline,PCA,LogisticRegression
+from prepData import cross_val_score
+from prepData import x,y
 
 pipe = Pipeline([
     ("preprocessing", preprocessor),

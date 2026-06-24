@@ -1,5 +1,7 @@
 
-from prepData import *
+from prepData import preprocessor,DecisionTreeClassifier
+from prepData import Pipeline,GridSearchCV
+from prepData import x,y, accuracy_score,confusion_matrix,classification_report
 
 pipe = Pipeline([
     ("preprocessing", preprocessor),
@@ -21,7 +23,7 @@ grid = GridSearchCV(
 )
 
 
-grid.fit(X, y)
+grid.fit(x, y)
 
 
 print("Best parameters:")
@@ -31,7 +33,7 @@ print("\nBest cross-validation score:")
 print(grid.best_score_)
 
 
-pred = grid.predict(X)
+pred = grid.predict(x)
 
 
 print("\nTraining accuracy:")

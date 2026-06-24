@@ -1,6 +1,5 @@
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-import random
+from prepData import StandardScaler
+from prepData import train_test_split,random
 
 x = []
 n = 10

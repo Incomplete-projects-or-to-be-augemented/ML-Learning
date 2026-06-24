@@ -1,5 +1,6 @@
-
-from prepData import *
+from prepData import preprocessor,KNeighborsClassifier
+from prepData import Pipeline,GridSearchCV
+from prepData import x,y, accuracy_score,confusion_matrix,classification_report
 
 pipe = Pipeline([
     ("preprocessing", preprocessor),
