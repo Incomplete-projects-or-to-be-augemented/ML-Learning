@@ -10,7 +10,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import OneHotEncoder, StandardScaler,PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.cluster import KMeans
 from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
