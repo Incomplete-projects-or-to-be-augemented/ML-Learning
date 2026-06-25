@@ -40,11 +40,14 @@ print("MSE:", mean_squared_error(y_test, y_pred))
 print("RMSE:", mean_squared_error(y_test, y_pred) ** 0.5)
 print("R²:", r2_score(y_test, y_pred))
 
+preprocessor = poly_model.named_steps["preprocessing"]
+
+preprocessor_feature_names = preprocessor.get_feature_names_out()
 
 # 6. Inspect generated polynomial feature names
 poly_step = poly_model.named_steps["poly"]
 
-feature_names = poly_step.get_feature_names_out()
+feature_names = poly_step.get_feature_names_out(preprocessor_feature_names)
 
 print("\nGenerated Polynomial Features")
 print("-" * 40)
