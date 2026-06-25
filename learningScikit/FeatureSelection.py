@@ -65,3 +65,12 @@ scores = selector.scores_
 
 for feature, score in zip(feature_names, scores):
     print(f"{feature}: {score}")
+
+print("\nRandom Forest feature importances:")
+
+forest = best_pipe.named_steps["model"]
+
+importances = forest.feature_importances_
+
+for feature, importance in zip(selected_features, importances):
+    print(f"{feature}: {importance}")
