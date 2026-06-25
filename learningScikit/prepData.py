@@ -15,6 +15,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.cluster import KMeans
 from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
 from sklearn.svm import SVC
+from sklearn.base import BaseEstimator, TransformerMixin
 
 import joblib
 
@@ -46,7 +47,13 @@ data = pd.DataFrame({
                       12, 14, 11, 13, 15, 16, 18, 17, 19, 20],
 
     "bought": [0, 0, 1, 1, 1, 1, 0, 0, 0, 1,
-               0, 0, 1, 1, 0, 1, 1, 0, 1, 0]
+               0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+    "commaed": [
+        "25,000", "32,000", "58,000", "72,000", "62,000",
+        "80,000", "27,000", "35,000", "48,000", "52,000",
+        "39,000", "41,000", "61,000", "69,000", "30,000",
+        "50,000", "54,000", "37,000", "76,000", "43,000"
+    ]
 })
 
 
