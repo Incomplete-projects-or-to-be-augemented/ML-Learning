@@ -75,3 +75,33 @@ print(feature_importance)
 
 print("\nBest Iteration:")
 print(xgb.best_iteration)
+
+from prepData import RandomizedSearchCV
+
+tuning_xgb = XGBClassifier(
+    objective="binary:logistic",
+    eval_metric="logloss",
+    random_state=42
+)
+
+param_grid = {
+    "n_estimators": [100, 200, 500],
+    "learning_rate": [0.01, 0.05, 0.1],
+    "max_depth": [3, 5, 7],
+    "subsample": [0.8, 1.0],
+    "colsample_bytree": [0.8, 1.0]
+}
+
+search = RandomizedSearchCV(
+    estimator=tuning_xgb,
+    param_distributions=param_grid,
+    n_iter=20,
+    cv=5,
+    scoring="f1",
+    random_state=42
+)
+
+search.fit(x_train_processed, y_train)
+
+print(search.best_params_)
+print(search.best_score_)
