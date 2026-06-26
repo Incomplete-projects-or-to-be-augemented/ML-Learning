@@ -12,15 +12,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler,PolynomialFeatures
 from sklearn.linear_model import LinearRegression
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans,DBSCAN,AgglomerativeClustering
 from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
 from sklearn.svm import SVC
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.cluster import DBSCAN
 
 import joblib
-
 import random
+
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.metrics import silhouette_score
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
