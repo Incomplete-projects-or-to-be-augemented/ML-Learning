@@ -21,9 +21,12 @@ model = Pipeline(
         ("lightgbm", LGBMClassifier(
             n_estimators=100,
             learning_rate=0.1,
-            num_leaves=31,
-            max_depth=-1,
-            random_state=42
+            num_leaves=7,
+            max_depth=3,
+            min_child_samples=1,
+            min_data_in_bin=1,
+            random_state=42,
+            verbose=-1
         ))
     ]
 )
