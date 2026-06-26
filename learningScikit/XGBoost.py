@@ -2,7 +2,7 @@
 
 from prepData import Pipeline,XGBClassifier
 from prepData import train_test_split,accuracy_score,confusion_matrix,classification_report
-from prepData import x,y,preprocessor
+from prepData import x,y,preprocessor,pd
 
 
 x_train, x_test, y_train, y_test = train_test_split(
@@ -39,3 +39,17 @@ print(confusion_matrix(y_test, y_pred))
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
+
+xgb = model.named_steps["xgboost"]
+
+feature_importance = pd.DataFrame({
+    "Feature": model.named_steps["preprocessing"].get_feature_names_out(),
+    "Importance": xgb.feature_importances_
+})
+
+feature_importance = feature_importance.sort_values(
+    by="Importance",
+    ascending=False
+)
+
+print(feature_importance)
