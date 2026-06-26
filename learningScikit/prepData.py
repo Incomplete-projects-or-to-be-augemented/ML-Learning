@@ -16,6 +16,7 @@ from sklearn.cluster import KMeans
 from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
 from sklearn.svm import SVC
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.cluster import DBSCAN
 
 import joblib
 
