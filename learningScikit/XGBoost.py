@@ -28,4 +28,14 @@ model = Pipeline(
     ]
 )
 
+model.fit(x_train, y_train)
+
+y_pred = model.predict(x_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
 
