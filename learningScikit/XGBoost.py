@@ -12,3 +12,18 @@ x_train, x_test, y_train, y_test = train_test_split(
     random_state=42,
     stratify=y
 )
+
+
+model = Pipeline(
+    steps=[
+        ("preprocessing", preprocessor),
+        ("xgboost", XGBClassifier(
+            n_estimators=100,
+            learning_rate=0.1,
+            max_depth=3,
+            objective="binary:logistic",
+            eval_metric="logloss",
+            random_state=42
+        ))
+    ]
+)
