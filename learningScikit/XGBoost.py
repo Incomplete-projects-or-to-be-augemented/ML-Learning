@@ -13,24 +13,42 @@ x_train, x_test, y_train, y_test = train_test_split(
     stratify=y
 )
 
+x_train, x_val, y_train, y_val = train_test_split(
+    x_train,
+    y_train,
+    test_size=0.2,
+    random_state=42,
+    stratify=y_train
+)
+
+xgb = XGBClassifier(
+    n_estimators=1000,
+    learning_rate=0.05,
+    max_depth=3,
+    objective="binary:logistic",
+    eval_metric="logloss",
+    early_stopping_rounds=10,
+    random_state=42
+)
+
 
 model = Pipeline(
     steps=[
         ("preprocessing", preprocessor),
-        ("xgboost", XGBClassifier(
-            n_estimators=100,
-            learning_rate=0.1,
-            max_depth=3,
-            objective="binary:logistic",
-            eval_metric="logloss",
-            random_state=42
-        ))
+        ("xgboost", xgb)
     ]
 )
 
-model.fit(x_train, y_train)
+x_train_processed = preprocessor.fit_transform(x_train)
+x_val_processed = preprocessor.transform(x_val)
+x_test_processed = preprocessor.transform(x_test)
 
-y_pred = model.predict(x_test)
+xgb.fit(
+    x_train_processed,
+    y_train,
+    eval_set=[(x_val_processed, y_val)]
+)
+y_pred = xgb.predict(x_test_processed)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nConfusion Matrix:")
@@ -52,4 +70,8 @@ feature_importance = feature_importance.sort_values(
     ascending=False
 )
 
+print("\nFeature Importance:")
 print(feature_importance)
+
+print("\nBest Iteration:")
+print(xgb.best_iteration)
