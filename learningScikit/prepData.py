@@ -29,6 +29,9 @@ from sklearn.model_selection import cross_val_score,train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.inspection import permutation_importance
 
+from xgboost import XGBClassifier
+
+
 
 data = pd.DataFrame({
     "age": [22, 25, 47, 52, 46, 56, 23, 30, 36, 40,
