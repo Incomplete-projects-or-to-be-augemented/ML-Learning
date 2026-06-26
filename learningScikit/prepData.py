@@ -21,7 +21,7 @@ import random
 import numpy as np
 import pandas as pd
 
-
+from sklearn.datasets import make_blobs
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.metrics import silhouette_score
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
