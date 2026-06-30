@@ -6,6 +6,8 @@ b = torch.tensor([10, 20, 30])
 print(a + b)
 print(a * b)
 
+# Matrix muliplication:
+
 A = torch.tensor([[1, 2],
                   [3, 4]])
 
