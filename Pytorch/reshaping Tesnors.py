@@ -14,3 +14,8 @@ z = torch.arange(12)
 
 
 print(z)
+
+
+p = z.reshape(3,4)
+
+print(p)
