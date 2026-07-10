@@ -31,6 +31,33 @@ a = x * 3
 b = a + 1
 c = b ** 2
 
+a.retain_grad()
+b.retain_grad()
+
 c.backward()
 
 print(x.grad)
+print(a.grad)
+print(b.grad)
+
+# noGrad
+# no gradient is caluclated. pretty obvious
+weight = torch.tensor(5.0, requires_grad=True)
+
+with torch.no_grad():
+    prediction = weight * 3
+
+print(prediction)
+print(prediction.requires_grad)
+
+
+# detach 
+# Recipe of computation graph ready for backward instead detach removes a step and severs it from the graph
+weight = torch.tensor(5.0, requires_grad=True)
+
+result = weight * 3
+
+detached_result = result.detach()
+
+print(result.requires_grad)
+print(detached_result.requires_grad)
